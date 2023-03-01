@@ -5,7 +5,7 @@ from collections import Counter
 from dataclasses import dataclass
 
 import ase.io
-import mdtraj
+#import mdtraj
 import numpy as np
 from IPython.lib.pretty import pretty
 
@@ -192,28 +192,28 @@ class Structure(slice_.Mixin, base.Refinery):
                 raise exception.IncorrectUsage(error_message) from err
         return structure
 
-    @base.data_access
-    @documentation.format(examples=slice_.examples("structure", "to_mdtraj"))
-    def to_mdtraj(self):
-        """Convert the trajectory to mdtraj.Trajectory
+    # @base.data_access
+    # @documentation.format(examples=slice_.examples("structure", "to_mdtraj"))
+    # def to_mdtraj(self):
+    #     """Convert the trajectory to mdtraj.Trajectory
 
-        Returns
-        -------
-        mdtraj.Trajectory
-            The mdtraj package offers many functionalities to analyze a MD
-            trajectory. By converting the Vasp data to their format, we facilitate
-            using all functions of that package.
+    #     Returns
+    #     -------
+    #     mdtraj.Trajectory
+    #         The mdtraj package offers many functionalities to analyze a MD
+    #         trajectory. By converting the Vasp data to their format, we facilitate
+    #         using all functions of that package.
 
-        {examples}
-        """
-        if not self._is_slice:
-            message = "Converting a single structure to mdtraj is not implemented."
-            raise exception.NotImplemented(message)
-        data = self.to_dict()
-        xyz = data["positions"] @ data["lattice_vectors"] * self.A_to_nm
-        trajectory = mdtraj.Trajectory(xyz, self._topology().to_mdtraj())
-        trajectory.unitcell_vectors = data["lattice_vectors"] * Structure.A_to_nm
-        return trajectory
+    #     {examples}
+    #     """
+    #     if not self._is_slice:
+    #         message = "Converting a single structure to mdtraj is not implemented."
+    #         raise exception.NotImplemented(message)
+    #     data = self.to_dict()
+    #     xyz = data["positions"] @ data["lattice_vectors"] * self.A_to_nm
+    #     trajectory = mdtraj.Trajectory(xyz, self._topology().to_mdtraj())
+    #     trajectory.unitcell_vectors = data["lattice_vectors"] * Structure.A_to_nm
+    #     return trajectory
 
     @base.data_access
     @documentation.format(examples=slice_.examples("structure", "to_POSCAR"))

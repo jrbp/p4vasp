@@ -2,7 +2,7 @@
 # Licensed under the Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 import itertools
 
-import mdtraj
+#import mdtraj
 import numpy as np
 import pandas as pd
 
@@ -64,15 +64,15 @@ class Topology(base.Refinery):
         """
         return pd.DataFrame({"name": self.names(), "element": self.elements()})
 
-    @base.data_access
-    def to_mdtraj(self):
-        """Convert the topology to a mdtraj.Topology."""
-        df = self.to_frame()
-        df["serial"] = None
-        df["resSeq"] = 0
-        df["resName"] = "crystal"
-        df["chainID"] = 0
-        return mdtraj.Topology.from_dataframe(df)
+    #@base.data_access
+    #def to_mdtraj(self):
+    #    """Convert the topology to a mdtraj.Topology."""
+    #    df = self.to_frame()
+    #    df["serial"] = None
+    #    df["resSeq"] = 0
+    #    df["resName"] = "crystal"
+    #    df["chainID"] = 0
+    #    return mdtraj.Topology.from_dataframe(df)
 
     @base.data_access
     def to_POSCAR(self, format_newline=""):
